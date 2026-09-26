@@ -22,6 +22,10 @@ svg{display:block}
 .icon-btn{ width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--pink); color:var(--green); flex:0 0 auto; }
 .icon-btn svg{ width:18px; height:18px; }
 
+.lang-switch{ display:flex; border:1.5px solid var(--pink-deep); border-radius:999px; overflow:hidden; flex:0 0 auto; }
+.lang-switch button{ border:none; background:transparent; color:var(--green-soft); font:600 11px/1 var(--font-body); padding:8px 10px; cursor:pointer; }
+.lang-switch button.active{ background:var(--pink-deep); color:var(--bg); }
+
 .topbar{ position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:space-between; padding:16px 20px; background:color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter:blur(6px); }
 .logo{ font-family:var(--font-display); font-size:20px; color:var(--green); display:flex; align-items:center; gap:6px; letter-spacing:.02em; }
 .logo b{ color:var(--pink-deep); font-weight:400; }
@@ -37,7 +41,7 @@ svg{display:block}
 .menu-links a{ font-family:var(--font-display); font-size:24px; color:var(--green); }
 .menu-contact{ font:400 15px/1.9 var(--font-body); color:var(--ink-soft); margin-bottom:24px; }
 .menu-contact a{ color:var(--ink); }
-.menu-social{ display:flex; gap:10px; margin-bottom:28px; }
+.menu-social{ display:flex; align-items:center; gap:10px; margin-bottom:28px; flex-wrap:wrap; }
 .menu-cta{ display:inline-block; padding:16px 28px; border-radius:999px; border:1.5px solid var(--pink-deep); color:var(--green); font:500 14px/1 var(--font-body); }
 
 .hero{ max-width:1040px; margin:0 auto; padding:8px 20px 60px; display:grid; grid-template-columns:1fr 1fr; gap:8px 40px; align-items:center; }
@@ -128,12 +132,12 @@ svg{display:block}
 <div class="popup-overlay" id="popup">
   <div class="popup-card">
     <button class="popup-close" id="popupClose" aria-label="Закрыть"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
-    <h3>Впервые у Fox?</h3>
-    <p>Оставьте номер — мастер перезвонит и подберёт удобное время на маникюр, педикюр, ресницы или брови.</p>
+    <h3 data-i18n="popup_title"></h3>
+    <p data-i18n="popup_text"></p>
     <form id="popupForm">
-      <input class="field" type="tel" placeholder="Телефон" required>
-      <input class="field" type="text" placeholder="Имя" required>
-      <button class="submit-btn" type="submit">Заказать звонок</button>
+      <input class="field" type="tel" data-i18n-ph="popup_phone_ph" required>
+      <input class="field" type="text" data-i18n-ph="popup_name_ph" required>
+      <button class="submit-btn" type="submit" data-i18n="popup_submit"></button>
     </form>
   </div>
 </div>
@@ -145,27 +149,35 @@ svg{display:block}
       <button class="burger" id="menuClose" aria-label="Закрыть меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
     </div>
     <nav class="menu-links">
-      <a href="#top">Главная</a>
-      <a href="#services">Услуги</a>
-      <a href="#about">О нас</a>
-      <a href="#contact">Контакты</a>
+      <a href="#top" data-i18n="nav_home"></a>
+      <a href="#services" data-i18n="nav_services"></a>
+      <a href="#about" data-i18n="nav_about"></a>
+      <a href="#contact" data-i18n="nav_contact"></a>
     </nav>
     <div class="menu-contact">
       +998 99 321 04 58<br>
-      Ташкент, массив Юнусабад, 13-й квартал, 64А<br>
-      Ежедневно 10:00–19:00
+      <span data-i18n="address_text"></span><br>
+      <span data-i18n="hours_text"></span>
     </div>
     <div class="menu-social">
       <a class="icon-btn" href="https://instagram.com/fox.studio_tashkent" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg></a>
       <a class="icon-btn" href="tel:+998993210458" aria-label="Позвонить"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h3l2 5-2.5 1.5a11 11 0 0 0 5 5L15 12l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2Z"/></svg></a>
+      <div class="lang-switch" data-lang-switch>
+        <button data-lang="ru">RU</button>
+        <button data-lang="uz">UZ</button>
+      </div>
     </div>
-    <a class="menu-cta" href="tel:+998993210458">Связаться со мной</a>
+    <a class="menu-cta" href="tel:+998993210458" data-i18n="menu_cta"></a>
   </div>
 </div>
 
 <div class="topbar" id="top">
   <span class="logo">F<b>ox</b></span>
   <div class="topbar-right">
+    <div class="lang-switch" data-lang-switch>
+      <button data-lang="ru">RU</button>
+      <button data-lang="uz">UZ</button>
+    </div>
     <a class="icon-btn" href="https://instagram.com/fox.studio_tashkent" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg></a>
     <button class="burger" id="menuOpen" aria-label="Меню"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
@@ -173,76 +185,76 @@ svg{display:block}
 
 <div class="hero">
   <div>
-    <h1 class="h1">Студия<br>маникюра</h1>
+    <h1 class="h1" data-i18n="hero_words"></h1>
   </div>
   <div class="oval-wrap">
     <div class="oval-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13.5" r="3.3"/></svg></div>
     <div class="brand-mark">
       <div class="fox">Fox</div>
-      <div class="city">в Ташкенте</div>
+      <div class="city" data-i18n="in_tashkent"></div>
     </div>
   </div>
   <div>
-    <p class="tagline"><span class="drop">F</span>ox — маникюр, педикюр, ресницы и брови. Тихий, аккуратный сервис: делаем с любовью и завоёвываем качеством.</p>
+    <p class="tagline"><span class="drop">F</span><span data-i18n="lede_rest"></span></p>
     <div class="hero-ctas">
-      <a class="circle-cta" href="tel:+998993210458">Записаться</a>
-      <div class="badge-circle">Топ мастера по отзывам</div>
+      <a class="circle-cta" href="tel:+998993210458" data-i18n="hero_cta"></a>
+      <div class="badge-circle" data-i18n="badge"></div>
     </div>
     <div style="margin-top:22px">
-      <a class="ghost-pill" href="#contact">Связаться со мной</a>
+      <a class="ghost-pill" href="#contact" data-i18n="hero_ghost"></a>
     </div>
   </div>
 </div>
 
-<a class="float-btn left" href="https://instagram.com/fox.studio_tashkent" target="_blank" rel="noopener">Instagram</a>
-<a class="float-btn right" href="tel:+998993210458">Онлайн-запись</a>
+<a class="float-btn left" href="https://instagram.com/fox.studio_tashkent" target="_blank" rel="noopener" data-i18n="float_ig"></a>
+<a class="float-btn right" href="tel:+998993210458" data-i18n="float_book"></a>
 
 <div class="section" id="services">
   <div class="section-head">
-    <h2>Услуги</h2>
-    <p>Цены уточняйте при записи — стоимость зависит от длины, формы и сложности дизайна.</p>
+    <h2 data-i18n="services_title"></h2>
+    <p data-i18n="services_sub"></p>
   </div>
   <div class="svc-scroll">
     <div class="svc-card">
-      <h3>Маникюр</h3>
+      <h3 data-i18n="svc_1_title"></h3>
       <ul>
-        <li><span>Классический / комбинированный</span><span>цена по запросу</span></li>
-        <li><span>Покрытие гель-лаком</span><span>цена по запросу</span></li>
-        <li><span>Дизайн</span><span>цена по запросу</span></li>
+        <li><span data-i18n="svc_1_li_1"></span><span data-i18n="price_note"></span></li>
+        <li><span data-i18n="svc_1_li_2"></span><span data-i18n="price_note"></span></li>
+        <li><span data-i18n="svc_1_li_3"></span><span data-i18n="price_note"></span></li>
       </ul>
-      <a class="svc-book" href="tel:+998993210458">Записаться</a>
+      <a class="svc-book" href="tel:+998993210458" data-i18n="svc_book"></a>
     </div>
     <div class="svc-card">
-      <h3>Педикюр</h3>
+      <h3 data-i18n="svc_2_title"></h3>
       <ul>
-        <li><span>Классический / комбинированный</span><span>цена по запросу</span></li>
-        <li><span>Аппаратный</span><span>цена по запросу</span></li>
+        <li><span data-i18n="svc_2_li_1"></span><span data-i18n="price_note"></span></li>
+        <li><span data-i18n="svc_2_li_2"></span><span data-i18n="price_note"></span></li>
       </ul>
-      <a class="svc-book" href="tel:+998993210458">Записаться</a>
+      <a class="svc-book" href="tel:+998993210458" data-i18n="svc_book"></a>
     </div>
     <div class="svc-card">
-      <h3>Ресницы</h3>
+      <h3 data-i18n="svc_3_title"></h3>
       <ul>
-        <li><span>Наращивание, объём</span><span>цена по запросу</span></li>
-        <li><span>Ламинирование</span><span>цена по запросу</span></li>
+        <li><span data-i18n="svc_3_li_1"></span><span data-i18n="price_note"></span></li>
+        <li><span data-i18n="svc_3_li_2"></span><span data-i18n="price_note"></span></li>
       </ul>
-      <a class="svc-book" href="tel:+998993210458">Записаться</a>
+      <a class="svc-book" href="tel:+998993210458" data-i18n="svc_book"></a>
     </div>
     <div class="svc-card">
-      <h3>Брови</h3>
+      <h3 data-i18n="svc_4_title"></h3>
       <ul>
-        <li><span>Архитектура и коррекция</span><span>цена по запросу</span></li>
-        <li><span>Окрашивание</span><span>цена по запросу</span></li>
+        <li><span data-i18n="svc_4_li_1"></span><span data-i18n="price_note"></span></li>
+        <li><span data-i18n="svc_4_li_2"></span><span data-i18n="price_note"></span></li>
       </ul>
-      <a class="svc-book" href="tel:+998993210458">Записаться</a>
+      <a class="svc-book" href="tel:+998993210458" data-i18n="svc_book"></a>
     </div>
   </div>
 </div>
 
 <div class="section">
   <div class="section-head">
-    <h2>Работы</h2>
-    <p>Слоты под фото — заполняются перед запуском.</p>
+    <h2 data-i18n="gallery_title"></h2>
+    <p data-i18n="gallery_sub"></p>
   </div>
   <div class="gallery">
     <div class="gph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13.5" r="3.3"/></svg></div>
@@ -257,51 +269,51 @@ svg{display:block}
 <div class="section" id="about">
   <div class="inside">
     <div class="inside-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M23 7l-7 5 7 5V7Z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
-    <div class="inside-script">Fox изнутри</div>
+    <div class="inside-script" data-i18n="inside_label"></div>
   </div>
 </div>
 
 <div class="section">
   <div class="section-head">
-    <h2>Почему Fox</h2>
+    <h2 data-i18n="values_title"></h2>
   </div>
   <div class="values">
     <div class="value">
       <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg></div>
-      <h3>Делаем с любовью</h3>
-      <p>Собственные слова студии из шапки Instagram-профиля.</p>
+      <h3 data-i18n="val_1_title"></h3>
+      <p data-i18n="val_1_desc"></p>
     </div>
     <div class="value">
       <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-.5Z"/></svg></div>
-      <h3>Топ мастера</h3>
-      <p>Рейтинг 4,8 на Яндекс.Картах по 7 отзывам.</p>
+      <h3 data-i18n="val_2_title"></h3>
+      <p data-i18n="val_2_desc"></p>
     </div>
     <div class="value">
       <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
-      <h3>Завоюем качеством</h3>
-      <p>Ежедневно 10:00–19:00, запись через Instagram или по телефону.</p>
+      <h3 data-i18n="val_3_title"></h3>
+      <p data-i18n="val_3_desc"></p>
     </div>
   </div>
 </div>
 
 <div class="section" id="contact">
   <div class="section-head">
-    <h2>Контакты</h2>
+    <h2 data-i18n="contact_title"></h2>
   </div>
   <div class="contact-wrap">
     <div class="contact-list">
-      <div class="contact-row"><span>Адрес</span><span>Ташкент, Юнусабадский район, массив Юнусабад, 13-й квартал, 64А</span></div>
-      <div class="contact-row"><span>Телефон</span><a href="tel:+998993210458">+998 99 321 04 58</a></div>
-      <div class="contact-row"><span>Instagram</span><a href="https://instagram.com/fox.studio_tashkent" target="_blank" rel="noopener">@fox.studio_tashkent</a></div>
-      <div class="contact-row"><span>Режим работы</span><span>10:00–19:00, ежедневно</span></div>
-      <div class="contact-row"><span>Яндекс.Карты</span><a href="https://yandex.uz/maps/org/fox/157199122832/" target="_blank" rel="noopener">4,8 · 7 отзывов</a></div>
+      <div class="contact-row"><span data-i18n="contact_address"></span><span data-i18n="address_text"></span></div>
+      <div class="contact-row"><span data-i18n="contact_phone"></span><a href="tel:+998993210458">+998 99 321 04 58</a></div>
+      <div class="contact-row"><span data-i18n="contact_ig"></span><a href="https://instagram.com/fox.studio_tashkent" target="_blank" rel="noopener">@fox.studio_tashkent</a></div>
+      <div class="contact-row"><span data-i18n="contact_hours"></span><span data-i18n="hours_text"></span></div>
+      <div class="contact-row"><span data-i18n="contact_maps"></span><a href="https://yandex.uz/maps/org/fox/157199122832/" target="_blank" rel="noopener">4,8 · 7</a></div>
     </div>
     <div class="form-box">
-      <h3>Записаться</h3>
-      <form onsubmit="event.preventDefault(); this.querySelector('.submit-btn').textContent='Спасибо, ждите звонка';">
-        <input class="field" type="tel" placeholder="Ваш телефон" required>
-        <input class="field" type="text" placeholder="Имя" required>
-        <button class="submit-btn" type="submit">Заказать звонок</button>
+      <h3 data-i18n="form_title"></h3>
+      <form id="contactForm">
+        <input class="field" type="tel" data-i18n-ph="form_phone_ph" required>
+        <input class="field" type="text" data-i18n-ph="form_name_ph" required>
+        <button class="submit-btn" type="submit" data-i18n="form_submit"></button>
       </form>
     </div>
   </div>
@@ -312,16 +324,110 @@ svg{display:block}
   <div class="foot-links">
     <a href="https://instagram.com/fox.studio_tashkent" target="_blank" rel="noopener">Instagram</a>
     <a href="tel:+998993210458">+998 99 321 04 58</a>
-    <a href="https://yandex.uz/maps/org/fox/157199122832/" target="_blank" rel="noopener">Яндекс.Карты</a>
+    <a href="https://yandex.uz/maps/org/fox/157199122832/" target="_blank" rel="noopener" data-i18n="contact_maps"></a>
   </div>
-  <small>Макет по образцу kimmylab.uz, на данных Яндекс.Карт и Instagram студии Fox. Фото добавляются перед публикацией.</small>
+  <small data-i18n="footer_note"></small>
 </div>
 
 <script>
+const I18N = {
+  ru: {
+    popup_title: "Впервые у Fox?",
+    popup_text: "Оставьте номер — мастер перезвонит и подберёт удобное время на маникюр, педикюр, ресницы или брови.",
+    popup_phone_ph: "Телефон", popup_name_ph: "Имя", popup_submit: "Заказать звонок",
+    popup_thanks_title: "Спасибо!", popup_thanks_text: "Мы перезвоним в течение дня.",
+    nav_home: "Главная", nav_services: "Услуги", nav_about: "О нас", nav_contact: "Контакты",
+    menu_cta: "Связаться со мной",
+    address_text: "Ташкент, массив Юнусабад, 13-й квартал, 64А",
+    hours_text: "Ежедневно 10:00–19:00",
+    hero_words: "Студия<br>маникюра",
+    in_tashkent: "в Ташкенте",
+    lede_rest: "ox — маникюр, педикюр, ресницы и брови. Тихий, аккуратный сервис: делаем с любовью и завоёвываем качеством.",
+    hero_cta: "Записаться", hero_ghost: "Связаться со мной",
+    badge: "Топ мастера по отзывам",
+    float_ig: "Instagram", float_book: "Онлайн-запись",
+    services_title: "Услуги", services_sub: "Цены уточняйте при записи — стоимость зависит от длины, формы и сложности дизайна.",
+    price_note: "цена по запросу", svc_book: "Записаться",
+    svc_1_title: "Маникюр", svc_1_li_1: "Классический / комбинированный", svc_1_li_2: "Покрытие гель-лаком", svc_1_li_3: "Дизайн",
+    svc_2_title: "Педикюр", svc_2_li_1: "Классический / комбинированный", svc_2_li_2: "Аппаратный",
+    svc_3_title: "Ресницы", svc_3_li_1: "Наращивание, объём", svc_3_li_2: "Ламинирование",
+    svc_4_title: "Брови", svc_4_li_1: "Архитектура и коррекция", svc_4_li_2: "Окрашивание",
+    gallery_title: "Работы", gallery_sub: "Слоты под фото — заполняются перед запуском.",
+    inside_label: "Fox изнутри",
+    values_title: "Почему Fox",
+    val_1_title: "Делаем с любовью", val_1_desc: "Собственные слова студии из шапки Instagram-профиля.",
+    val_2_title: "Топ мастера", val_2_desc: "Рейтинг 4,8 на Яндекс.Картах по 7 отзывам.",
+    val_3_title: "Завоюем качеством", val_3_desc: "Ежедневно 10:00–19:00, запись через Instagram или по телефону.",
+    contact_title: "Контакты", contact_address: "Адрес", contact_phone: "Телефон", contact_ig: "Instagram",
+    contact_hours: "Режим работы", contact_maps: "Яндекс.Карты",
+    form_title: "Записаться", form_phone_ph: "Ваш телефон", form_name_ph: "Имя",
+    form_submit: "Заказать звонок", form_thanks: "Спасибо, ждите звонка",
+    footer_note: "Макет по образцу kimmylab.uz, на данных Яндекс.Карт и Instagram студии Fox. Фото добавляются перед публикацией.",
+  },
+  uz: {
+    popup_title: "Birinchi marta Foxdami?",
+    popup_text: "Raqamingizni qoldiring — usta qo'ng'iroq qilib, manikyur, pedikyur, kirpik yoki qosh uchun qulay vaqtni tanlaydi.",
+    popup_phone_ph: "Telefon", popup_name_ph: "Ism", popup_submit: "Qo'ng'iroqqa buyurtma berish",
+    popup_thanks_title: "Rahmat!", popup_thanks_text: "Biz kun davomida qo'ng'iroq qilamiz.",
+    nav_home: "Bosh sahifa", nav_services: "Xizmatlar", nav_about: "Biz haqimizda", nav_contact: "Kontaktlar",
+    menu_cta: "Men bilan bog'laning",
+    address_text: "Toshkent, Yunusobod massivi, 13-kvartal, 64A-uy",
+    hours_text: "Har kuni 10:00–19:00",
+    hero_words: "Manikyur<br>studiyasi",
+    in_tashkent: "Toshkentda",
+    lede_rest: "ox — manikyur, pedikyur, kirpik va qoshlar. Xotirjam, sinchkov xizmat: sevgi bilan ishlaymiz va sifat bilan yutamiz.",
+    hero_cta: "Yozilish", hero_ghost: "Men bilan bog'laning",
+    badge: "Sharhlarga ko'ra top ustalar",
+    float_ig: "Instagram", float_book: "Onlayn yozilish",
+    services_title: "Xizmatlar", services_sub: "Narxlarni yozilishda aniqlashtiring — narx uzunlik, shakl va dizayn murakkabligiga bog'liq.",
+    price_note: "narxi so'rov bo'yicha", svc_book: "Yozilish",
+    svc_1_title: "Manikyur", svc_1_li_1: "Klassik / kombinatsiyalashgan", svc_1_li_2: "Gel-lak bilan qoplash", svc_1_li_3: "Dizayn",
+    svc_2_title: "Pedikyur", svc_2_li_1: "Klassik / kombinatsiyalashgan", svc_2_li_2: "Apparat",
+    svc_3_title: "Kirpiklar", svc_3_li_1: "Uzaytirish, hajm", svc_3_li_2: "Laminatsiya",
+    svc_4_title: "Qoshlar", svc_4_li_1: "Arxitektura va korreksiya", svc_4_li_2: "Bo'yash",
+    gallery_title: "Ishlar", gallery_sub: "Foto uchun joylar — ishga tushirishdan oldin to'ldiriladi.",
+    inside_label: "Fox ichida",
+    values_title: "Nega aynan Fox",
+    val_1_title: "Sevgi bilan ishlaymiz", val_1_desc: "Studiyaning Instagram profilidan olingan so'zlari.",
+    val_2_title: "Top ustalar", val_2_desc: "Yandex Xaritalarda 7 ta sharh bo'yicha 4,8 reyting.",
+    val_3_title: "Sifat bilan yutamiz", val_3_desc: "Har kuni 10:00–19:00, Instagram yoki telefon orqali yozilish.",
+    contact_title: "Kontaktlar", contact_address: "Manzil", contact_phone: "Telefon", contact_ig: "Instagram",
+    contact_hours: "Ish vaqti", contact_maps: "Yandex Xaritalar",
+    form_title: "Yozilish", form_phone_ph: "Telefoningiz", form_name_ph: "Ism",
+    form_submit: "Qo'ng'iroqqa buyurtma berish", form_thanks: "Rahmat, qo'ng'iroqni kuting",
+    footer_note: "Maket kimmylab.uz namunasi asosida, Fox studiyasining Yandex Xaritalar va Instagram ma'lumotlari yordamida tayyorlangan. Fotolar ishga tushirishdan oldin qo'shiladi.",
+  }
+};
+
+const langKey = 'fox_lang';
+let currentLang = 'ru';
+try{ currentLang = localStorage.getItem(langKey) || 'ru'; }catch(e){}
+
+function applyLang(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.dataset.i18n;
+    if(I18N[lang][key] !== undefined) el.innerHTML = I18N[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.dataset.i18nPh;
+    if(I18N[lang][key] !== undefined) el.placeholder = I18N[lang][key];
+  });
+  document.querySelectorAll('[data-lang-switch] button').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  try{ localStorage.setItem(langKey, lang); }catch(e){}
+}
+document.querySelectorAll('[data-lang-switch] button').forEach(btn=>{
+  btn.addEventListener('click', ()=> applyLang(btn.dataset.lang));
+});
+applyLang(currentLang);
+
 const menuPanel = document.getElementById('menuPanel');
 document.getElementById('menuOpen').addEventListener('click', ()=> menuPanel.classList.add('open'));
 document.getElementById('menuClose').addEventListener('click', ()=> menuPanel.classList.remove('open'));
-menuPanel.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> menuPanel.classList.remove('open')));
+menuPanel.querySelectorAll('.menu-links a').forEach(a=> a.addEventListener('click', ()=> menuPanel.classList.remove('open')));
 
 const popup = document.getElementById('popup');
 function closePopup(){ popup.classList.remove('open'); try{ sessionStorage.setItem('fox_popup_seen','1'); }catch(e){} }
@@ -329,9 +435,13 @@ document.getElementById('popupClose').addEventListener('click', closePopup);
 popup.addEventListener('click', e=>{ if(e.target===popup) closePopup(); });
 document.getElementById('popupForm').addEventListener('submit', e=>{
   e.preventDefault();
-  popup.querySelector('h3').textContent = 'Спасибо!';
-  popup.querySelector('p').textContent = 'Мы перезвоним в течение дня.';
+  popup.querySelector('h3').textContent = I18N[currentLang].popup_thanks_title;
+  popup.querySelector('p').textContent = I18N[currentLang].popup_thanks_text;
   popup.querySelector('form').hidden = true;
+});
+document.getElementById('contactForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  e.target.querySelector('.submit-btn').textContent = I18N[currentLang].form_thanks;
 });
 let seen = false;
 try{ seen = sessionStorage.getItem('fox_popup_seen') === '1'; }catch(e){}
